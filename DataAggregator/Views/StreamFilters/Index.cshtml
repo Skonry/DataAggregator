@@ -1,0 +1,37 @@
+﻿@model DataAggregator.ViewModels.StreamFiltersViewModel
+
+<h1>Add filter to stream</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="StreamFilters" asp-action="Create" asp-route-streamId="@Context.Request.RouteValues["streamId"]" method="post">
+            <div class="form-group">
+                <label for="filterId" class="control-label">Choose filter</label>
+                <select name="filterId" class="form-control" asp-items="@Model.OtherFiltersList"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<h1>Remove filter from stream</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="StreamFilters" asp-action="Delete" asp-route-streamId="@Context.Request.RouteValues["streamId"]" method="post">
+            <div class="form-group">
+                <label for="filterId" class="control-label">Choose filter</label>
+                <select name="filterId" class="form-control" asp-items="@Model.StreamFiltersList"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Remove" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Streams" asp-action="Details" asp-route-Id="@Context.Request.RouteValues["streamId"]">Back to Stream Details</a>
+</div>

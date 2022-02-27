@@ -1,0 +1,27 @@
+﻿@model DataAggregator.ViewModels.StreamViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Model.StreamName</h1>
+
+<div>
+    @Html.ActionLink("Edit sources", "Index", "StreamSources", new { streamId = Model.StreamId }, null) |
+    @Html.ActionLink("Edit filters", "Index", "StreamFilters", new { streamId = Model.StreamId }, null) |
+    <a asp-action="Edit" asp-route-id="@Model?.StreamId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@foreach (var source in Model.Sources)
+{
+    <h2>@source.SourceName</h2>
+    
+    @foreach (var item in source.FeedItems)
+    {
+        <p>Title: @item.Title</p>
+        <p>Date: <i>@item.Date</i></p>
+        <a href="@item.Link">Link</a>
+        <hr />
+    }
+}

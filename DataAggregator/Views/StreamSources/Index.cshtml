@@ -1,0 +1,37 @@
+﻿@model DataAggregator.ViewModels.StreamSourcesViewModel
+
+<h1>Add source to stream</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="StreamSources" asp-action="Create" asp-route-streamId="@Context.Request.RouteValues["streamId"]" method="post">
+            <div class="form-group">
+                <label for="sourceId" class="control-label">Choose source</label>
+                <select name="sourceId" class="form-control" asp-items="@Model.OtherSourcesList"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<h1>Remove source from stream</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="StreamSources" asp-action="Delete" asp-route-streamId="@Context.Request.RouteValues["streamId"]" method="post">
+            <div class="form-group">
+                <label for="sourceId" class="control-label">Choose source</label>
+                <select name="sourceId" class="form-control" asp-items="@Model.StreamSourcesList"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Remove" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Streams" asp-action="Details" asp-route-Id="@Context.Request.RouteValues["streamId"]">Back to Stream Details</a>
+</div>
